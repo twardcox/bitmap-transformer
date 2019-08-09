@@ -21,10 +21,18 @@ public class Bitmap {
 //    instance variables
     private String originalFileName;
     private String newFileName;
+    private String transformation;
 
-    public Bitmap(String originalFileName, String newFileName) {
+    public Bitmap(String originalFileName, String newFileName, String transformation) {
         this.originalFileName = "./src/main/resources/"+ originalFileName + ".bmp";
         this.newFileName = "./src/main/resources/"+ newFileName + ".bmp";
+        if (transformation.equals("convertBW")){
+            convertBW();
+        } else if (transformation.equals("flipImage")){
+            flipImage();
+        } else if (transformation.equals("halfSizeIt")){
+            halfSizeIt();
+        }
     }
 
     public void copyfile(String src, String dest) throws IOException{
@@ -33,28 +41,6 @@ public class Bitmap {
         File destination = new File(dest);
         Files.copy(source.toPath(), destination.toPath());
     }
-
-//    public void modSpecificColorByPixel() throws IOException {
-//////        modify new copy
-////        copyfile(originalFileName, newFileName);
-////        BufferedImage img = ImageIO.read(new File(newFileName));
-////        int height = img.getHeight();
-////        int width = img.getWidth();
-////
-////        System.out.println(height + " " + width + " " + img.getRGB(30, 30));
-////
-////        for (int h =1; h < height; h++){
-////            for (int w = 1; w < width; w++){
-////                int rgb = img.getRGB(w, h);
-////                int red = (rgb >> 16) & 0x000000FF;
-////                int green = (rgb >> 8) & 0x000000FF;
-////                int blue = (rgb) & 0x000000FF;
-////                System.out.println(rgb);
-////            }
-////        }
-////
-////    }
-
 
     public void convertBW(){
         try {
@@ -74,4 +60,43 @@ public class Bitmap {
             e.printStackTrace();
         }
     }
+
+    public void flipImage(){
+        try {
+            File input = new File(originalFileName);
+            BufferedImage image = ImageIO.read(input);
+
+            BufferedImage result = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
+
+            Graphics2D graphic = result.createGraphics();
+            graphic.drawImage(image, 0, image.getHeight(), image.getWidth(), 0, 0, 0, image.getWidth(), image.getHeight(), null);
+            graphic.dispose();
+
+            File output = new File(newFileName);
+            ImageIO.write(result, "bmp", output);
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void halfSizeIt(){
+        try {
+            File input = new File(originalFileName);
+            BufferedImage image = ImageIO.read(input);
+
+            BufferedImage result = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
+
+            Graphics2D graphic = result.createGraphics();
+            graphic.drawImage(image, 0,  0, image.getWidth()/2, image.getHeight()/2,  null);
+            graphic.dispose();
+
+            File output = new File(newFileName);
+            ImageIO.write(result, "bmp", output);
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
 }
