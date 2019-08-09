@@ -24,6 +24,7 @@ public class Bitmap {
     private String transformation;
 
     public Bitmap(String originalFileName, String newFileName, String transformation) {
+
         this.originalFileName = "./src/main/resources/"+ originalFileName + ".bmp";
         this.newFileName = "./src/main/resources/"+ newFileName + ".bmp";
         if (transformation.equals("convertBW")){
@@ -32,6 +33,8 @@ public class Bitmap {
             flipImage();
         } else if (transformation.equals("halfSizeIt")){
             halfSizeIt();
+        } else {
+            System.out.println("The method you requested does not exist. Please use either convertBW, flipImage, or halfSizeIt.");
         }
     }
 

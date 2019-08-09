@@ -1,24 +1,14 @@
-# Data Structures & Algorithms File Structure for Code 401: Java
+# Bitmap Transformation lab 04
 
-This repo shows the expected file structure for Code 401: Java data structures & algorithms. The command `gradle init --type java-library` was run inside of the `code401challenges` directory, and that `code401challenges` directory is the root from which I open IntelliJ.
+This application creates a Bitmap object that contains three transformation methods: convertBW, flipImage, and halfSizeIt.
 
-This root README is where the links to daily work live.
+## lab04 Challenge
 
-## Week 1 Challenges
-## [Day 1: Reverse an Array](./code401challenges/src/main/java/code401challenges/ArrayReverse.java)  
+Build a bitmap (.bmp) transformer CLI. It will read a bitmap in from disk, run one or more color or raster transforms and then write it out to a new file. This project will require manipulating binary data. Your solution should be composed of small tested methods that solve specific problems. Your methods should be thoughtfully named and well documented. You should run ./gradlew run --args 'input output transform' to run your application. Your bitmap transformer modules should not use any third party libraries. 
   
 ## Paired Programming Partner
 * Matt Stuhring
 * Travis Cox
-
-  ### Challenge Summary
-  Write a function called reverseArray which takes an array as an argument. Without utilizing any of the built-in methods available to your language, return an array with elements in reversed order.
-  
-  #### Challenge Description
-  Write a function called reverseArray which takes an array as an argument. Without utilizing any of the built-in methods available to your language, return an array with elements in reversed order.
-  
-  #### Approach & Efficiency
-  We took the iterate through and replace approach. We have not covered Big O time yet.
   
   #### Solution
   ![Alt text](./assets/array_reverse.jpg?raw=true 'Reverse Array')
