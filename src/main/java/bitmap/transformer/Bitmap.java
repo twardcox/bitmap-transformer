@@ -3,7 +3,7 @@
  */
 package bitmap.transformer;
 
-public class App {
+public class Bitmap {
     public String getGreeting() {
         return "Hello world.";
     }
